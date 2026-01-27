@@ -4,10 +4,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
-@Table(name = "transportista")
+@Table(name = "usuario")
 public class Usuario {
-    //Getters y setters
     @Setter
     @Getter
     @Id
@@ -19,24 +21,41 @@ public class Usuario {
     @Column (name="nombre")
     private String nombre;
 
-    @Setter
-    @Getter
-    @Column (name="apellidos")
-    private String apellidos;
+    @Column(nullable = false)
+    private String contrasena;
 
-    @Setter
-    @Getter
-    @Column (name="dni")
-    private String dni;
+    @Column(unique = true, nullable = false, length = 100)
+    private String email;
+
+    @Column(nullable = false)
+    private boolean enabled = true;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name="user_roles", joinColumns = @JoinColumn(name="user_id") )
+    @Column(name="roles")
+    @Enumerated(EnumType.STRING)
+    private Set<Rol> roles = new HashSet<>();
 
     public Usuario() {
 
     }
 
-    public Usuario(String nombre, String apellidos, String dni) {
+    public Usuario(String nombre, String contrasena, String email) {
         this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.dni = dni;
+        this.contrasena = contrasena;
+        this.email = email;
+        this.roles.add(Rol.TRANSPORTISTA);
     }
 
+    public Usuario(String nombre, String contrasena, String email, Rol rol) {
+        this.nombre = nombre;
+        this.contrasena = contrasena;
+        this.email = email;
+        this.roles.add(rol);
+    }
+
+
+    public enum Rol {
+        ADMIN, TRANSPORTISTA
+    }
 }

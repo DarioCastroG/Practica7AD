@@ -1,4 +1,6 @@
 package es.transportesamartin.repository;
 
-public class VehiculoSpringRepository {
+public interface VehiculoSpringRepository {
+    //Metodos CRUD
+
 }

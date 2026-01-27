@@ -21,4 +21,8 @@ public class Vehiculo {
 
     @Column(name="kilometraje")
     public double kilometraje;
+
+    public Vehiculo() {
+
+    }
 }

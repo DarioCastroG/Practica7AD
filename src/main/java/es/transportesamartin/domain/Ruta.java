@@ -1,24 +1,24 @@
 package es.transportesamartin.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name="ruta")
 public class Ruta {
     @Id
-    @GeneratedValue(strategy= GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private long id;
 
-    @Column (name="numerodecarretera")
-    private String numeroDeCarretera;
+    @Column(name = "puntodesalida")
+    private String puntoDeSalida;
 
-    @Enumerated(value = EnumType.STRING)
-    @Column (name="tipodecarretera")
-    private Carretera tipoDeCarretera;
+    @Column(name = "puntodedestino")
+    private String puntoDeDestino;
 
-    public enum Carretera{
-        NACIONAL, COMARCAL, AUTOPISTA, AUTOVIA
+    public Ruta() {
+
     }
-
 
 }

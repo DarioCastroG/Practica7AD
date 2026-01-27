@@ -18,5 +18,7 @@ public class Transportista {
     @Column (name="dni")
     private String dni;
 
+    public Transportista() {
 
+    }
 }

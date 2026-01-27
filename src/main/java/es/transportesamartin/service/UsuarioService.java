@@ -1,4 +1,4 @@
 package es.transportesamartin.service;
 
-public class TransportistaService {
+public class UsuarioService {
 }

@@ -14,7 +14,7 @@
         <!-- <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
 
         <!-- Clases que se van a persistir -->
-        <class>es.transportesamartin.domain.Transportista</class>
+        <class>es.transportesamartin.domain.Usuario</class>
         <class>es.transportesamartin.domain.Pedido</class>
 
         <!-- Si no se listan todas las clases, incluir también las detectadas automáticamente -->

@@ -1,5 +1,5 @@
 package es.transportesamartin.repository;
 
-public interface TransportistaSpringRepository {
+public interface UsuarioSpringRepository {
     //Métodos CRUD
 }

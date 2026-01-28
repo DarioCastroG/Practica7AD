@@ -28,4 +28,14 @@ public class Transportista {
     @Getter
     @Column (name="dni")
     private String dni;
+
+    public Transportista() {
+
+    }
+
+    public Transportista(String nombre, String apellidos, String dni) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.dni = dni;
+    }
 }

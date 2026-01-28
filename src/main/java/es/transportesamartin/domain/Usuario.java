@@ -21,15 +21,23 @@ public class Usuario {
     @Column (name="nombre")
     private String nombre;
 
+    @Setter
+    @Getter
     @Column(nullable = false)
     private String contrasena;
 
+    @Setter
+    @Getter
     @Column(unique = true, nullable = false, length = 100)
     private String email;
 
+    @Setter
+    @Getter
     @Column(nullable = false)
     private boolean enabled = true;
 
+    @Setter
+    @Getter
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name="user_roles", joinColumns = @JoinColumn(name="user_id") )
     @Column(name="roles")

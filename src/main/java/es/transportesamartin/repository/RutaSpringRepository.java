@@ -1,5 +1,8 @@
 package es.transportesamartin.repository;
 
-public interface RutaSpringRepository {
+import es.transportesamartin.domain.Ruta;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RutaSpringRepository extends JpaRepository<Ruta, Long> {
     //CRUD
 }

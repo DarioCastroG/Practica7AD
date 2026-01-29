@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="vehiculo")
 public class Vehiculo {
@@ -12,7 +15,7 @@ public class Vehiculo {
     @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    public long id;
+    public Long id;
 
     @Getter
     @Setter
@@ -34,6 +37,22 @@ public class Vehiculo {
     @Column(name="kilometraje")
     public double kilometraje;
 
+    @Getter
+    @Setter
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "transportista_id")
+    private Transportista transportista;
+
+    @Getter
+    @Setter
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "vehiculo_ruta",
+            joinColumns = @JoinColumn(name = "vehiculo_id"),
+            inverseJoinColumns = @JoinColumn(name = "ruta_id")
+    )
+    private List<Ruta> rutas = new ArrayList<>();
+
     public Vehiculo() {
 
     }
@@ -44,4 +63,6 @@ public class Vehiculo {
         this.modelo = modelo;
         this.kilometraje = kilometraje;
     }
+
+
 }

@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "transportista")
 public class Transportista {
@@ -29,11 +32,17 @@ public class Transportista {
     @Column (name="dni")
     private String dni;
 
-    public Transportista() {
+
+    @Getter
+    @Setter
+    @OneToMany(mappedBy = "transportista", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Vehiculo> vehiculos = new ArrayList<>();
+
+    public Transportista(){
 
     }
 
-    public Transportista(String nombre, String apellidos, String dni) {
+    public Transportista(String nombre, String apellidos, String dni){
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;

@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="ruta")
@@ -13,7 +15,7 @@ public class Ruta {
     @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private long id;
+    private Long id;
 
     @Getter
     @Setter
@@ -35,6 +37,11 @@ public class Ruta {
     @Column(name = "tiempoestimado")
     private Time tiempoEstimado;
 
+    @Getter
+    @Setter
+    @ManyToMany(mappedBy = "rutas", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Vehiculo> vehiculos = new ArrayList<>();
+
     public Ruta() {
 
     }
@@ -45,5 +52,6 @@ public class Ruta {
         this.distancia = distancia;
         this.tiempoEstimado = tiempoEstimado;
     }
+
 
 }

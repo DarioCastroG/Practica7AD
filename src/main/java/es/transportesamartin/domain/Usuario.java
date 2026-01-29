@@ -14,7 +14,7 @@ public class Usuario {
     @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private long id;
+    private Long id;
 
     @Setter
     @Getter

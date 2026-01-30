@@ -17,4 +17,8 @@ public interface TransportistaSpringRepository extends JpaRepository<Transportis
 
     //Eliminar
     void delete(Transportista transportista);
+
+    //Asignar/desasignar vehiculo a transportista
+
+    //Asignar/desasignar ruta a transportista
 }

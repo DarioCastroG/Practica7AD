@@ -39,9 +39,11 @@ public class Ruta {
 
     @Getter
     @Setter
-    @ManyToMany(mappedBy = "rutas", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Vehiculo> vehiculos = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name="transportista_id")
+    private Transportista transportista;
 
+    
     public Ruta() {
 
     }

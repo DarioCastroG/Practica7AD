@@ -39,19 +39,10 @@ public class Vehiculo {
 
     @Getter
     @Setter
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "transportista_id")
+    @OneToOne
+    @JoinColumn(name="transportista_id")
     private Transportista transportista;
 
-    @Getter
-    @Setter
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "vehiculo_ruta",
-            joinColumns = @JoinColumn(name = "vehiculo_id"),
-            inverseJoinColumns = @JoinColumn(name = "ruta_id")
-    )
-    private List<Ruta> rutas = new ArrayList<>();
 
     public Vehiculo() {
 

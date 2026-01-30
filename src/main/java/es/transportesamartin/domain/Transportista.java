@@ -35,8 +35,13 @@ public class Transportista {
 
     @Getter
     @Setter
-    @OneToMany(mappedBy = "transportista", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Vehiculo> vehiculos = new ArrayList<>();
+    @OneToOne(mappedBy="vehiculos")
+    private Vehiculo vehiculo;
+
+    @Getter
+    @Setter
+    @OneToMany(mappedBy="ruta", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    private List<Ruta> rutas = new ArrayList<>();
 
     public Transportista(){
 

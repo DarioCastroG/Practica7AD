@@ -1,5 +1,6 @@
 package es.transportesamartin.controller;
 
+import es.transportesamartin.assembler.TransportistaAssembler;
 import es.transportesamartin.domain.Transportista;
 import es.transportesamartin.service.TransportistaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,11 @@ import java.util.stream.Collectors;
 public class TransportistaController {
     @Autowired
     private TransportistaService transportistaService;
+    private TransportistaAssembler transportistaAssembler;
 
-    public TransportistaController(TransportistaService transportistaService) {
+    public TransportistaController(TransportistaService transportistaService, TransportistaAssembler transportistaAssembler) {
         this.transportistaService = transportistaService;
+        this.transportistaAssembler = transportistaAssembler;
     }
 
 

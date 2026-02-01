@@ -18,12 +18,11 @@ public class TransportistaService {
         this.transportistaRepo = transportistaRepo;
     }
 
-
-
     @Transactional
     public Transportista create(Transportista transportista) {
 
-        if (transportista.getDni() != null && !transportista.getDni().isEmpty()) {
+        if (transportista.getId() != null) {
+            //&& transportista.getDni().isEmpty()
             /*
             if (hasAdminPermissions(roles)) {
                 // Admin: check DNI globally
@@ -40,10 +39,15 @@ public class TransportistaService {
             }
             */
             transportistaRepo.findById(transportista.getId()).ifPresent(a -> {
-                throw new RuntimeException("Ya existe un transportista con ese DNI");
+                throw new RuntimeException("Ya existe un transportista con ese ID");
             });
         }
         return transportistaRepo.save(transportista);
+    }
+
+    public Transportista findById(Long id) {
+        return transportistaRepo.findById(id)
+                .orElseThrow(()-> new RuntimeException("Transportista no existe"));
     }
 
     public List<Transportista> findAll() {
@@ -51,14 +55,26 @@ public class TransportistaService {
     }
 
     @Transactional
-    public Transportista update(Transportista transportista) {
-        if (transportistaRepo.findById(transportista.getId()) == null || transportista.getDni().isEmpty()) {
+    public Transportista update(Long id, Transportista transportistaActualizado) {
+        Transportista transportista = findById(id);
+        transportista.setNombre(transportistaActualizado.getNombre());
+        transportista.setApellidos(transportistaActualizado.getApellidos());
+        transportista.setDni(transportistaActualizado.getDni());
 
-            throw new RuntimeException("Ya existe un transportista con ese DNI");
-
-        }
         return transportistaRepo.save(transportista);
     }
 
 
+
+    //Eliminar un producto
+    @Transactional
+    public void delete(Long id) {
+        transportistaRepo.deleteById(id);
+    }
+
+    //Requiere usuario para funcionar
+
+    //Asignar
+
+    //Desasignar
 }

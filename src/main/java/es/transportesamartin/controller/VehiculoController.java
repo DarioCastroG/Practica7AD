@@ -32,7 +32,7 @@ public class VehiculoController {
         return vehiculoAssembler.toDTO(vehiculo);
     }
 
-    //Actualizar ruta (solo Admin)
+    //Actualizar vehículo (solo Admin)
     @PutMapping ("/{id}")
     public VehiculoDTO update(@PathVariable Long id, @RequestBody VehiculoDTO vehiculoDTO){
         Vehiculo vehiculoExistente = vehiculoService.findById(id);
@@ -41,13 +41,13 @@ public class VehiculoController {
         return vehiculoAssembler.toDTO(actualizado);
     }
 
-    //Eliminar ruta (solo Admin)
+    //Eliminar vehículo (solo Admin)
     @DeleteMapping
     public void delete(@PathVariable Long id){
         vehiculoService.delete(id);
     }
 
-    //Buscar todos las rutas (solo Admin)
+    //Buscar todos las vehículo (solo Admin)
     @GetMapping
     public List<VehiculoDTO> findAll(){
         return vehiculoService.findAll().stream().map(vehiculoAssembler::toDTO).collect(Collectors.toList());

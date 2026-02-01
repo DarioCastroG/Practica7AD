@@ -2,6 +2,7 @@ package es.transportesamartin.controller;
 
 import es.transportesamartin.assembler.TransportistaAssembler;
 import es.transportesamartin.domain.Transportista;
+import es.transportesamartin.dto.TransportistaDTO;
 import es.transportesamartin.service.TransportistaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +28,7 @@ public class TransportistaController {
 
 
     @GetMapping
-    public List<Transportista> findAll(){
+    public List<TransportistaDTO> findAll(){
         return transportistaService.findAll().stream().map(transportistaAssembler::toDTO).collect(Collectors.toList());
     }
 }

@@ -18,6 +18,7 @@ public class TransportistaService {
         this.transportistaRepo = transportistaRepo;
     }
 
+    //Crear un transportista
     @Transactional
     public Transportista create(Transportista transportista) {
 
@@ -45,6 +46,7 @@ public class TransportistaService {
         return transportistaRepo.save(transportista);
     }
 
+    //Buscar transportista por id
     public Transportista findById(Long id) {
         return transportistaRepo.findById(id)
                 .orElseThrow(()-> new RuntimeException("Transportista no existe"));
@@ -54,6 +56,7 @@ public class TransportistaService {
         return transportistaRepo.findAll();
     }
 
+    //Actualizar transportista
     @Transactional
     public Transportista update(Long id, Transportista transportistaActualizado) {
         Transportista transportista = findById(id);
@@ -66,7 +69,7 @@ public class TransportistaService {
 
 
 
-    //Eliminar un producto
+    //Eliminar un transportista
     @Transactional
     public void delete(Long id) {
         transportistaRepo.deleteById(id);

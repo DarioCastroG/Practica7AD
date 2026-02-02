@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 public class TransportistaController {
     @Autowired
     private TransportistaService transportistaService;
+    @Autowired
     private TransportistaAssembler transportistaAssembler;
 
     public TransportistaController(TransportistaService transportistaService, TransportistaAssembler transportistaAssembler) {

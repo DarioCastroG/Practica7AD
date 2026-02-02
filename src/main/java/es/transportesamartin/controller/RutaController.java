@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 public class RutaController {
     @Autowired
     private RutaService rutaService;
+    @Autowired
     private RutaAssembler rutaAssembler;
 
     public RutaController(RutaService rutaService, RutaAssembler rutaAssembler){

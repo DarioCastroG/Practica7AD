@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 public class VehiculoController {
     @Autowired
     private VehiculoService vehiculoService;
+    @Autowired
     private VehiculoAssembler vehiculoAssembler;
 
     public VehiculoController(VehiculoService vehiculoService, VehiculoAssembler vehiculoAssembler){

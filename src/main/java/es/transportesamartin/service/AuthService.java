@@ -33,10 +33,10 @@ public class AuthService {
     private UserDetailsService userDetailsService;
 
     public Map<String,Object> register(String username, String password, String email){
-        return register(username,password,email, Usuario.Rol.TRANSPORTISTA);
+        return register(username,password,email, Usuario.Role.TRANSPORTISTA);
     }
 
-    public Map<String, Object> register(String username, String password, String email, Usuario.Rol rol) {
+    public Map<String, Object> register(String username, String password, String email, Usuario.Role role) {
         if (userRepo.existsByUsername(username)) {
             throw new RuntimeException("Username already exists");
         }
@@ -44,7 +44,7 @@ public class AuthService {
             throw new RuntimeException("Email already exists");
         }
 
-        Usuario usuario = new Usuario(username, passwordEncoder.encode(password), email, rol);
+        Usuario usuario = new Usuario(username, passwordEncoder.encode(password), email, role);
         usuario = userRepo.save(usuario);
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);

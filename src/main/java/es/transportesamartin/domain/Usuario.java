@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "usuarios")
 public class Usuario {
     @Setter
     @Getter
@@ -42,7 +42,7 @@ public class Usuario {
     @CollectionTable(name="user_roles", joinColumns = @JoinColumn(name="user_id") )
     @Column(name="roles")
     @Enumerated(EnumType.STRING)
-    private Set<Rol> roles = new HashSet<>();
+    private Set<Role> roles = new HashSet<>();
 
     public Usuario() {
 
@@ -52,10 +52,10 @@ public class Usuario {
         this.nombre = nombre;
         this.contrasena = contrasena;
         this.email = email;
-        this.roles.add(Rol.TRANSPORTISTA);
+        this.roles.add(Role.TRANSPORTISTA);
     }
 
-    public Usuario(String nombre, String contrasena, String email, Rol rol) {
+    public Usuario(String nombre, String contrasena, String email, Role rol) {
         this.nombre = nombre;
         this.contrasena = contrasena;
         this.email = email;
@@ -86,8 +86,31 @@ public class Usuario {
         this.email = email;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
 
-    public enum Rol {
+    public void setEnabled(boolean enabled){
+        this.enabled=enabled;
+    }
+
+    public Set<Role> getRoles(){
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles){
+        this.roles = roles;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public enum Role {
         ADMIN, TRANSPORTISTA
     }
 }

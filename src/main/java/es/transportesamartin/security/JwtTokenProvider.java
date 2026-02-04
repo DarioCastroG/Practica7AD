@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class JwtTokenProvider {
-    @Value("${jwt.secret:}")
+    @Value("${jwt.secret:mySecretKeyForJWTTokenGenerationAndValidationMustBeAtLeast256BitsLongForSecurity}")
     private String secret;
 
     @Value("${jwt.expiration:86400000}")

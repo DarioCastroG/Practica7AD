@@ -5,6 +5,7 @@ import es.transportesamartin.domain.Transportista;
 import es.transportesamartin.repository.RutaSpringRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -57,7 +58,7 @@ public class RutaService {
 
 
     //Eliminar una ruta
-    @org.springframework.transaction.annotation.Transactional
+    @Transactional
     public void delete(Long id) {
         rutaRepo.deleteById(id);
     }

@@ -5,6 +5,7 @@ import es.transportesamartin.domain.Ruta;
 import es.transportesamartin.dto.RutaDTO;
 import es.transportesamartin.service.RutaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class RutaController {
 
     //Crear ruta (solo Admin)
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public RutaDTO create(@RequestBody RutaDTO rutaDTO){
         Ruta ruta = rutaAssembler.toEntity(rutaDTO);
         Ruta nueva = rutaService.create(ruta);
@@ -35,6 +37,7 @@ public class RutaController {
 
     //Actualizar ruta (solo Admin)
     @PutMapping ("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public RutaDTO update(@PathVariable Long id, @RequestBody RutaDTO rutaDTO){
         Ruta rutaExistente = rutaService.findById(id);
         Ruta actualizada = rutaService.update(id,rutaExistente);
@@ -44,6 +47,7 @@ public class RutaController {
 
     //Eliminar ruta (solo Admin)
     @DeleteMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public void delete(@PathVariable Long id){
         rutaService.delete(id);
     }

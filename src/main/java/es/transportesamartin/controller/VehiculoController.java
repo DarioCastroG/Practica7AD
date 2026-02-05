@@ -6,6 +6,7 @@ import es.transportesamartin.domain.Vehiculo;
 import es.transportesamartin.dto.VehiculoDTO;
 import es.transportesamartin.service.VehiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class VehiculoController {
 
     //Crear vehículo
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public VehiculoDTO create(@RequestBody VehiculoDTO vehiculoDTO){
         Vehiculo vehiculo = vehiculoAssembler.toEntity(vehiculoDTO);
         Vehiculo nuevo = vehiculoService.create(vehiculo);
@@ -35,6 +37,7 @@ public class VehiculoController {
 
     //Actualizar vehículo (solo Admin)
     @PutMapping ("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public VehiculoDTO update(@PathVariable Long id, @RequestBody VehiculoDTO vehiculoDTO){
         Vehiculo vehiculoExistente = vehiculoService.findById(id);
         Vehiculo actualizado = vehiculoService.update(id,vehiculoExistente);
@@ -44,6 +47,7 @@ public class VehiculoController {
 
     //Eliminar vehículo (solo Admin)
     @DeleteMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public void delete(@PathVariable Long id){
         vehiculoService.delete(id);
     }

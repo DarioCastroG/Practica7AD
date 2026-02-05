@@ -14,6 +14,9 @@ public interface TransportistaSpringRepository extends JpaRepository<Transportis
     //Buscar por id
     Optional<Transportista> findById(Long id);
 
+    //Buscar por id propio y de usuario
+    Optional<Transportista> findByIdAndUserId(Long id, Long userId);
+
     //Actualizar
     Optional<Transportista> update(Long id,Transportista transportista);
 

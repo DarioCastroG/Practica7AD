@@ -5,6 +5,7 @@ import es.transportesamartin.domain.Transportista;
 import es.transportesamartin.dto.TransportistaDTO;
 import es.transportesamartin.service.TransportistaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +33,7 @@ public class TransportistaController {
 
     //Crear nuevo transportista (solo el ADMIN)
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public TransportistaDTO create(@RequestBody TransportistaDTO transportistaDTO){
         Transportista transportista = transportistaAssembler.toEntity(transportistaDTO);
         Transportista nuevo = transportistaService.create(transportista);
@@ -41,6 +43,7 @@ public class TransportistaController {
 
     //Modificar un transportista existente
     @PutMapping ("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public TransportistaDTO update(@PathVariable Long id, @RequestBody TransportistaDTO transportistaDTO){
         Transportista transportistaExistente = transportistaService.findById(id);
         Transportista actualizado = transportistaService.update(id,transportistaExistente);
@@ -50,6 +53,7 @@ public class TransportistaController {
 
     //Eliminar un transportista
     @DeleteMapping ("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void delete(@PathVariable Long id){
         transportistaService.delete(id);
     }
